@@ -23,7 +23,7 @@ var selectedValues = manualFilter(numbers, (value) => {
 });
 console.log(selectedValues);
 
-
+console.log("Test");
 //Functions
 //--------------------------------------------------------------------------------------------------------
 

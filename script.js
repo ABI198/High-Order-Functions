@@ -1,49 +1,64 @@
 var numbers = [1,2,3,4,5];
 
-
-//Test Area
+//Foreach Test
 manualForeach(numbers, (value, index) => {
     console.log(value*2 + ' ' +index);
 });
 
+//Map Test
 var changedNumbers = manualMap(numbers, (value) => {
     return value*2;
 });
 console.log(changedNumbers);
 
+//Find Test
+var selectedValue = manualFind(numbers, (value) => {
+    return value == 4;
+});
+console.log("Selected Number:" + selectedValue);
+
+//Filter Test
+var selectedValues = manualFilter(numbers, (value) => {
+    return value > 2;
+});
+console.log(selectedValues);
 
 
 //Functions
 //--------------------------------------------------------------------------------------------------------
 
-//Foreach
+//foreach()
 function manualForeach(array, callback){ 
     for(let i = 0; i < array.length; ++i){
-        if(callback.length === 1)
-            callback(array[i]);
-        else if(callback.length === 2)
-            callback(array[i], i);
-        else if(callback.length === 3)
             callback(array[i], i, array);
-        else    
-            console.error("You used more arguments than expexted!")
     }
 };
 
-//Map
+//map()
 function manualMap(array, callback){
     let newArray = [];
-    for(let i = 0; i < array.length; ++i){
-        if(callback.length === 1)
-           newArray.push(callback(array[i])); 
-        else if(callback.length === 2)
-            newArray.push(callback(array[i], i)); 
-        else if(callback.length === 3)
+    for(let i = 0; i < array.length; ++i)
             newArray.push(callback(array[i], i, array)); 
-        else    
-            console.error("You used more arguments than expexted!")
-    }
     return newArray;
+}
+
+//find()
+function manualFind(array, callback){
+    let selectedValue = null;
+    for(let i = 0; i < array.length; ++i){
+        if(callback(array[i], i, array))
+            return selectedValue = array[i];
+    }
+}
+
+//filter()
+function manualFilter(array, callback){
+    let selectedValues = [];
+    for(let i = 0; i < array.length; ++i){
+        if(callback(array[i], i, array))
+            selectedValues.push(array[i]);
+    }
+    return selectedValues;
 }
 
 
